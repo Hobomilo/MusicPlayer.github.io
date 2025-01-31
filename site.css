@@ -79,9 +79,10 @@ p {
 }
 
 ul {
+    /* "my interests" section */
 	display: block;
-	text-align: center;
-	padding-left: 0%;
+	text-align: left;
+	padding-left: 20%;
 }
 
 li {
