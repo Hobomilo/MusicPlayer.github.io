@@ -33,7 +33,7 @@
 		flex: 1;
 	}
 	section { 
-	background-color: rgb(91, 107, 130, 100);
+	background-color: rgb(91, 107, 130);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -101,7 +101,7 @@ img {
 
 
 header {
-	background-color: rgb(18, 71, 85);
+	background-color: rgb(50, 86, 140);
 	color: black;
 	font-size: 3rem;
 	margin-top: 0;
