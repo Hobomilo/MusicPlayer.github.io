@@ -123,9 +123,10 @@ iframe {
 
 footer {
 	height: 100px;
-	background-color: #001bff;
+	background-color: #4b507a;
 }
 /*
+i have no use for ID's
 #complete {
 	background-color: green;
 }
