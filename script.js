@@ -1,4 +1,5 @@
 //this is a lot of stuff
+/*
 const tagSelectors = [
     {
       tag: 'h1',
@@ -126,3 +127,4 @@ const tagSelectors = [
     checklistItem.appendChild(checklistItemContent);
     section.appendChild(checklistItem);
   }
+    */
