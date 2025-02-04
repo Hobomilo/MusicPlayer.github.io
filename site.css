@@ -1,15 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Nanum+Brush+Script|Roboto|Roboto+Slab');
+@font-face {
+	font-family: 'Nanum Brush Script';
+	src: url('fonts/NanumBrushScript-Regular.ttf') format('truetype');
+}
 
-@media only screen and (min-device-width: 300px) and (max-device-width: 840px){
+@media only screen and (min-width: 300px) and (max-width: 840px) {}
 
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('fonts/RobotoSlab-Regular.ttf') format('truetype');
+}
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 840px) {
 	div {
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
-
 	}
-	section {
-		background-color: white;
+}
+
+@media only screen and (min-width: 840px) {
+	div {
 		width: 100%;
 		margin-left: 0;
 		margin-right: 0;
@@ -17,22 +27,25 @@
 		margin-bottom: 0;
 		padding-top: 20px;
 		padding-bottom: 20px;
-	}
-		
-}
-
-@media only screen and (min-device-width: 840px){
-	div {
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
 		padding-left: 0;
 		padding-right: 0;
 		display: flex;
 		flex-wrap: wrap;
-		flex: 1;
 	}
-	section { 
+}
+
+div {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 0;
+	padding-right: 0;
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1;
+}
+
+section {
 	background-color: rgb(63, 102, 156);
 	width: 100%;
 	margin-left: auto;
@@ -45,7 +58,8 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.section-image { 
+
+.section-image {
 	background-color: royalblue;
 	width: 100%;
 	margin-left: auto;
@@ -59,7 +73,7 @@
 	padding-bottom: 0px;
 	border: 1px solid black;
 }
-}
+
 
 body {
 	max-width: 100%;
@@ -76,7 +90,9 @@ h1 {
 	text-align: center;
 }
 
-h2,h3,h4 {
+h2,
+h3,
+h4 {
 	font-size: 1.8rem;
 	color: black;
 	display: block;
@@ -93,7 +109,7 @@ p {
 }
 
 ul {
-    /* "my interests" section */
+	/* "my interests" section */
 	display: block;
 	text-align: left;
 	padding-left: 20%;
@@ -130,7 +146,7 @@ header {
 
 iframe {
 	margin-left: auto;
-	margin-right: auto;
+	max-width: 100%;
 	display: block;
 	max-width: 100%
 }
@@ -139,12 +155,12 @@ footer {
 	height: 100px;
 	background-color: #5e7f94;
 }
-/*
-i have no use for ID's
+
+/* Unused ID styles
 #complete {
 	background-color: green;
 }
 
 #incomplete {
 	background-color: rgb(181, 129, 129);
-} */ 
+} */
