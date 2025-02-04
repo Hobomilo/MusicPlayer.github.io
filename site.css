@@ -53,6 +53,8 @@
 	margin-top: 0;
 	margin-bottom: 0;
 	display: flex;
+	flex-direction: row;
+	justify-content: normal;
 	padding-top: 10px;
 	padding-bottom: 0px
 }
