@@ -1,4 +1,5 @@
 //this is a lot of stuff
+//dont really need it
 /*
 const tagSelectors = [
     {
