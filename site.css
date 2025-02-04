@@ -52,6 +52,7 @@
 	margin-right: auto;
 	margin-top: 0;
 	margin-bottom: 0;
+	display: flex;
 	padding-top: 10px;
 	padding-bottom: 0px
 }
