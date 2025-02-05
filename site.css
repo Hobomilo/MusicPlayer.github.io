@@ -166,7 +166,7 @@ iframe {
 
 footer {
 	height: 100px;
-	background-color: #5e7f94;
+	background-color: rgb(94, 127, 148, 0.7);
 }
 footer::before {
 	content: "";
