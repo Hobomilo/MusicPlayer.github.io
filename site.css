@@ -71,7 +71,7 @@ section {
 
 
 body {
-	background-image: url('/Images/hero.jpg');
+	background-image: url('./Images/hero.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
