@@ -144,13 +144,14 @@ img {
 
 
 header {
-	background-color: rgb(50, 86, 140);
+	background-color: rgb(50, 86, 140, 0.8);
 	color: black;
 	font-size: 3rem;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border: 3px solid black;
 }
 
 .bg1 {
