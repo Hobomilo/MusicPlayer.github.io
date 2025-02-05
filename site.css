@@ -175,11 +175,3 @@ footer::before {
 	height: 100px;
 	z-index: -1;
 }
-/* Unused ID styles
-#complete {
-	background-color: green;
-}
-
-#incomplete {
-	background-color: rgb(181, 129, 129);
-} */
