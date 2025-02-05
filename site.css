@@ -44,6 +44,7 @@ div {
 }
 
 section {
+	background-color: rgb(132, 107, 70, 0.5);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
