@@ -72,9 +72,10 @@ section {
 
 body {
 	background-image: url('./Images/hero.jpg');
-	background-size: cover;
+	background-size: contain;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	background-position: center;
 	max-width: 100%;
 	font-family: 'Roboto Slab', serif;
 	margin: 0;
