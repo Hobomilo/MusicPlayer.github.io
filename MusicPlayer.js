@@ -27,7 +27,7 @@ function setup () {
 }
 
 function draw() {
-  background(255);
+  background(none);
   //base layer
   rectMode(CENTER);
   rect (width/2, height/2, width*3/4, height*3/4);
