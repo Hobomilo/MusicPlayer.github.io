@@ -6,12 +6,20 @@
 //embed "<script src="MusicPlayer.js"></script>"" in html
 //DO NOT USE MINIM USE p5.js SOUND LIBRARY
 
+let play, pause, mute, exit;
+
+play = new Image();
+pause = new Image();
+mute = new Image();
+exit = new Image();
+
+play.src = './Icons/play.jpg';
+pause.src ='./Icons/pause.jpg';
+mute.src = './Icons/mute.jpg';
+exit.src = './Icons/exit.png';
+
 function setup () {
-  play = loadImage ("./Icons/play.jpg");
-  pause = loadImage ("./Icons/pause.jpg");
-  mute = loadImage ("./Icons/mute.jpg");
-  exit = loadImage ("./Icons/exit.png");
-  size(800, 600);
+  createCanvas(800, 600);
   //fullScreen();
 }
 
