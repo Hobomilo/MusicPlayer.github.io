@@ -8,16 +8,11 @@
 
 let play, pause, mute, exit;
 
-play = new Image();
-pause = new Image();
-mute = new Image();
-exit = new Image();
-
 function preload() {
-play.src = './Images/play.jpg';
-pause.src ='./Images/pause.jpg';
-mute.src = './Images/mute.jpg';
-exit.src = './Images/exit.png';
+play = loadImage('./Images/play.jpg');
+pause = loadImage('./Images/pause.jpg');
+mute = loadImage('./Images/mute.jpg');
+exit = loadImage('./Images/exit.png');
 }
 
 function setup () {
@@ -30,7 +25,7 @@ function draw() {
   background(255, 255, 255, 0.5);
   //base layer
   rectMode(CENTER);
-  fill(255, 255, 255);
+  fill(255);
   rect (width/2, height/2, width*3/4, height*3/4);
   //
   //second layer (buttons)
@@ -38,16 +33,16 @@ function draw() {
   fill(255, 255, 255);
   //play
   rect (width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  //image (play, width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  image (play, width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //pause
   rect (width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  //image (pause, width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  image (pause, width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //mute
   rect (width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  //image (mute, width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  image (mute, width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //exit
   rect (width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  //image (exit, width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  image (exit, width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //
   //third layer (overlay)
   rectMode(CENTER);
