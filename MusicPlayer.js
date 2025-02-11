@@ -30,10 +30,12 @@ function draw() {
   background(255, 255, 255, 0.5);
   //base layer
   rectMode(CENTER);
+  fill(255, 255, 255, 0.5);
   rect (width/2, height/2, width*3/4, height*3/4);
   //
   //second layer (buttons)
   rectMode(CORNER);
+  fill(255, 255, 255);
   //play
   rect (width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //image (play, width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
