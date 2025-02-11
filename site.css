@@ -36,8 +36,9 @@
 
 div {
 	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
 	display: flex;
 	flex-wrap: wrap;
 	flex: 1;
