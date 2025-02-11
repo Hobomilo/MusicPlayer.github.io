@@ -36,16 +36,16 @@ function draw() {
   rectMode(CORNER);
   //play
   rect (width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  image (play, width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  //image (play, width*1/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //pause
   rect (width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  image (pause, width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  //image (pause, width*2/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //mute
   rect (width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  image (mute, width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  //image (mute, width*3/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //exit
   rect (width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
-  image (exit, width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
+  //image (exit, width*4/5 - width/20, height*3/4 - height/20, width/10, height/10);
   //
   //third layer (overlay)
   rectMode(CENTER);
