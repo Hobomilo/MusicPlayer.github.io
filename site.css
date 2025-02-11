@@ -47,8 +47,9 @@ div {
 section {
 	background-color: rgba(98, 70, 132, 0.5);
 	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
 	display: flex;
 	flex-direction: row;
 	justify-content: normal;
