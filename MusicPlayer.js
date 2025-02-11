@@ -21,8 +21,8 @@ exit.src = './Images/exit.png';
 }
 
 function setup () {
-  createCanvas(800, 600);
-  preload();
+  let canvas = createCanvas(800, 600);
+  canvas.id('musicPlayerCanvas');
   //fullScreen();
 }
 
