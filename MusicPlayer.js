@@ -22,6 +22,7 @@ exit.src = './Images/exit.png';
 
 function setup () {
   createCanvas(800, 600);
+  preload();
   //fullScreen();
 }
 
