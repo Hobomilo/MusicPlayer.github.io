@@ -69,6 +69,19 @@ section {
 	border: 3px solid black;
 }
 
+.section-musicPlayer {
+	background: none;
+	background-color: rgb(65, 105, 225, 0.3);
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: normal;
+	border: 3px solid black;
+}
 
 body {
 	background-image: url('./Images/violet.jpg');
