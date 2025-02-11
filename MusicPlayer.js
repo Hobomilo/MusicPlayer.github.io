@@ -14,10 +14,10 @@ mute = new Image();
 exit = new Image();
 
 function preload() {
-play.src = './Icons/play.jpg';
-pause.src ='./Icons/pause.jpg';
-mute.src = './Icons/mute.jpg';
-exit.src = './Icons/exit.png';
+play.src = './Images/play.jpg';
+pause.src ='./Images/pause.jpg';
+mute.src = './Images/mute.jpg';
+exit.src = './Images/exit.png';
 }
 
 function setup () {
