@@ -13,10 +13,12 @@ pause = new Image();
 mute = new Image();
 exit = new Image();
 
+function preload() {
 play.src = './Icons/play.jpg';
 pause.src ='./Icons/pause.jpg';
 mute.src = './Icons/mute.jpg';
 exit.src = './Icons/exit.png';
+}
 
 function setup () {
   createCanvas(800, 600);
@@ -24,6 +26,7 @@ function setup () {
 }
 
 function draw() {
+  background(255);
   //base layer
   rectMode(CENTER);
   rect (width/2, height/2, width*3/4, height*3/4);
