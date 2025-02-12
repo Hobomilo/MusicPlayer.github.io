@@ -48,7 +48,8 @@ function draw() {
   rectMode(CENTER);
   rect(width/2, height*2/5, width*3/4 - width/20, height*1/2, 30);
   //
-  //fourth layer (song name)
+  //fourth layer (score cards)
+  rect(width*1/5, height/2 - height*3/8, width*3/10, height*3/10);
 }
 
 function keyPressed() {
