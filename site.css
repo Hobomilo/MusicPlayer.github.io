@@ -103,11 +103,11 @@ body {
 	align-items: center;
 	height: 100vh;
 	margin: 0;
-  }
+}
 
 .musicPlayerCanvas {
 	display: block;
-  }
+}
 
 body::before {
 	content: "";
@@ -193,6 +193,7 @@ footer {
 	background-color: rgb(94, 127, 148, 0.7);
 	border: 1px solid black;
 }
+
 footer::before {
 	background: none;
 	content: "";
