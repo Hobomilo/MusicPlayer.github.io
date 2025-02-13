@@ -67,8 +67,9 @@ function mouseClicked() {
         //change these if it looks weird
         popupMenu.style.left = `${overlayX + overlayWidth / 2}px`;
         popupMenu.style.top = `${overlayY + overlayHeight / 2}px`;
+        console.log('popup displayed');
       } else {
-        print(`true${index + 1}`);
+        console.log('nothing happened');
       }
     }
   });
