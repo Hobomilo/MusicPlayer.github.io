@@ -1,11 +1,12 @@
-//.pde -> .js
-//p5.js web editor with finished processing code
-//download as zip
-//extract zip
-//replace this with the contents
-//embed "<script src="MusicPlayer.js"></script>"" in html
-//DO NOT USE MINIM USE p5.js SOUND LIBRARY
 
+let width = 800;
+let height = 600;
+
+const overlayX = width / 2;
+const overlayY = height * 2 / 5;
+const overlayWidth = width * 3 / 4 - width / 20;
+const overlayHeight = height * 1 / 2;
+const overlayRadius = 30;
 let play, pause, mute, exit;
 
 function preload() {
@@ -21,6 +22,20 @@ function setup() {
   //fullScreen();
 }
 
+function calculatePosition(position) {
+  const x = width * position - width / 20;
+  const y = height * 3 / 4 - height / 20;
+  return { x, y };
+}
+
+function drawButton(img, position) {
+  const { x, y } = calculatePosition(position);
+  const w = width / 10;
+  const h = height / 10;
+  rect(x, y, w, h);
+  image(img, x, y, w, h);
+}
+
 function draw() {
   background(255, 255, 255, 0.5);
   //base layer
@@ -31,32 +46,39 @@ function draw() {
   //second layer (buttons)
   rectMode(CORNER);
   fill(255, 255, 255);
-  //play
-  rect(width * 1 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  image(play, width * 1 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  //pause
-  rect(width * 2 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  image(pause, width * 2 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  //mute
-  rect(width * 3 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  image(mute, width * 3 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  //exit
-  rect(width * 4 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
-  image(exit, width * 4 / 5 - width / 20, height * 3 / 4 - height / 20, width / 10, height / 10);
+  drawButton(play, 1 / 5);
+  drawButton(pause, 2 / 5);
+  drawButton(mute, 3 / 5);
+  drawButton(exit, 4 / 5);
   //
   //third layer (overlay)
   rectMode(CENTER);
-  rect(width / 2, height * 2 / 5, width * 3 / 4 - width / 20, height * 1 / 2, 30);
+  rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
   //
   //fourth layer (score cards)
 }
-
-function keyPressed() {
-}
 function mouseClicked() {
-  if (mouseX > width * 1 / 5 - width / 20 && mouseX < width * 1 / 5 + width / 20 && mouseY > height * 3 / 4 - height / 20 && mouseY < height * 3 / 4 + height / 20) print("true");
-  if (mouseX > width * 2 / 5 - width / 20 && mouseX < width * 2 / 5 + width / 20 && mouseY > height * 3 / 4 - height / 20 && mouseY < height * 3 / 4 + height / 20) print("true2");
-  if (mouseX > width * 3 / 5 - width / 20 && mouseX < width * 3 / 5 + width / 20 && mouseY > height * 3 / 4 - height / 20 && mouseY < height * 3 / 4 + height / 20) print("true3");
-  if (mouseX > width * 4 / 5 - width / 20 && mouseX < width * 4 / 5 + width / 20 && mouseY > height * 3 / 4 - height / 20 && mouseY < height * 3 / 4 + height / 20) print("true4");
-  //print(mouseX, mouseY);
+  const positions = [1 / 5, 2 / 5, 3 / 5, 4 / 5];
+  positions.forEach((position, index) => {
+    const { x, y } = calculatePosition(position);
+    if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
+      if (index === 0) {
+        const popupMenu = document.getElementById('popupMenu');
+        popupMenu.style.display = 'block';
+        popupMenu.style.left = `${overlayX + overlayWidth / 2}px`;
+        popupMenu.style.top = `${overlayY + overlayHeight / 2}px`;
+      } else {
+        print(`true${index + 1}`);
+      }
+    }
+  });
+
 }
+
+document.addEventListener('click', function (event) {
+  const popupMenu = document.getElementById('popupMenu');
+  if (!popupMenu.contains(event.target)) {
+    popupMenu.style.display = 'none';
+  }
+});
+
