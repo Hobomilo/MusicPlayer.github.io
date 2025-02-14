@@ -64,7 +64,7 @@ function mouseClicked() {
       if (index === 0) {
         const popupMenu = document.getElementById('popupMenu');
         popupMenu.style.display = 'block';
-        //change these if it looks weird
+        // Change these if it looks weird
         popupMenu.style.left = `${overlayX + overlayWidth / 2}px`;
         popupMenu.style.top = `${overlayY + overlayHeight / 2}px`;
         console.log('popup displayed');
@@ -73,7 +73,6 @@ function mouseClicked() {
       }
     }
   });
-
 }
 
 document.addEventListener('click', function (event) {
@@ -82,4 +81,3 @@ document.addEventListener('click', function (event) {
     popupMenu.style.display = 'none';
   }
 });
-
