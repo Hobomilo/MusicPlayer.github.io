@@ -65,11 +65,10 @@ function mouseClicked() {
         const popupMenu = document.getElementById('popupMenu');
         popupMenu.style.display = 'block';
         // Change these if it looks weird
-        popupMenu.style.rectMode = CORNER;
-        popupMenu.style.left = overlayX + 'px';
-        popupMenu.style.top = overlayY + 'px';
-        popupMenu.style.width = overlayWidth + 'px';
-        popupMenu.style.height = overlayHeight + 'px';
+        popupMenu.style.left = `${overlayX}px`;
+        popupMenu.style.top = `${overlayY}px`;
+        popupMenu.style.width = `${overlayWidth}px`;
+        popupMenu.style.height = `${overlayHeight}px`;
         popupMenu.style.position = 'absolute';
         popupMenu.style.zIndex = '1000';
         console.log('popup displayed');
