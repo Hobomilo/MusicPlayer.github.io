@@ -65,6 +65,7 @@ function mouseClicked() {
         const popupMenu = document.getElementById('popupMenu');
         popupMenu.style.display = 'block';
         // Change these if it looks weird
+        popupMenu.style.rectMode = CENTER;
         popupMenu.style.left = `${overlayX}px`;
         popupMenu.style.top = `${overlayY}px`;
         popupMenu.style.width = `${overlayWidth}px`;
