@@ -36,7 +36,7 @@ function drawButton(img, position) {
 }
 
 function draw() {
-  background(255, 255, 255, 0.5);
+  background(255, 255, 255, 0);
   //base layer
   rectMode(CENTER);
   fill(255);
