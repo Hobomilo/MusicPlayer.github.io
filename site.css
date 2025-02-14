@@ -1,14 +1,3 @@
-@font-face {
-	font-family: 'Nanum Brush Script';
-	src: url('fonts/NanumBrushScript-Regular.ttf') format('truetype');
-}
-
-
-@font-face {
-	font-family: 'Roboto Slab';
-	src: url('fonts/RobotoSlab-Regular.ttf') format('truetype');
-}
-
 @media only screen and (min-device-width: 300px) and (max-device-width: 840px) {
 	div {
 		width: 100%;
@@ -207,6 +196,7 @@ iframe {
 	display: block;
 	max-width: 100%;
 }
+
 footer {
 	height: 100px;
 	background-color: rgb(94, 127, 148, 0.7);
