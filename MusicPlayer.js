@@ -67,6 +67,10 @@ function mouseClicked() {
         // Change these if it looks weird
         popupMenu.style.left = `${overlayX}px`;
         popupMenu.style.top = `${overlayY}px`;
+        popupMenu.style.width = `${overlayWidth}px`;
+        popupMenu.style.height = `${overlayHeight}px`;
+        popupMenu.style.position = 'absolute';
+        popupMenu.style.zIndex = '1000';
         console.log('popup displayed');
       } else {
         console.log('nothing happened');
