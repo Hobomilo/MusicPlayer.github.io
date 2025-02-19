@@ -70,6 +70,7 @@ function mouseClicked() {
         popupMenu.style.top = `${overlayY - overlayHeight / 2}px`;
         popupMenu.style.width = `${overlayWidth}px`;
         popupMenu.style.height = `${overlayHeight}px`;
+        popupMenu.style.borderRadius = `${overlayRadius}px`;
         popupMenu.style.position = 'absolute';
         popupMenu.style.zIndex = '1000';
         console.log('popup displayed');
