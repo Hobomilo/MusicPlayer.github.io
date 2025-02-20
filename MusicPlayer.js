@@ -64,15 +64,16 @@ function mouseClicked() {
       if (index === 0) {
         const popupMenu = document.getElementById('popupMenu');
         popupMenu.style.display = 'block';
-        // Change these if it looks weird
-        
-        popupMenu.style.left = `${overlayX - overlayWidth / 2}px`;
-        popupMenu.style.top = `${overlayY - overlayHeight / 2}px`;
+        popupMenu.style.zIndex = '1000';
+        popupMenu.style.position = 'absolute';
         popupMenu.style.width = `${overlayWidth}px`;
         popupMenu.style.height = `${overlayHeight}px`;
         popupMenu.style.borderRadius = `${overlayRadius}px`;
-        popupMenu.style.position = 'absolute';
-        popupMenu.style.zIndex = '1000';
+        // Change these if it looks weird
+        popupMenu.style.left = `${overlayX - overlayWidth / 2}px`;
+        popupMenu.style.top = `${overlayY - overlayHeight / 2}px`;
+        popupMenu.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+        //debug
         console.log('popup displayed');
       } else {
         console.log('nothing happened');
