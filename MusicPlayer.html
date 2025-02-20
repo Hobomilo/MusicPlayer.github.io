@@ -20,6 +20,7 @@
   <script src="MusicPlayer.js"></script>
   <div id="popupMenu" style="display: none; position: absolute; border: 3px solid black;">
     Popup Content
+    <button id="popupPlayButton">Play</button>
   </div>
   <audio id="audioPlayer" src="./Music/bibidiba.mp3"></audio>
   <section class="section-MusicPlayer">
@@ -32,7 +33,7 @@
     </div>
   </section>
   <script>
-    document.getElementById('playButton').addEventListener('click', function() {
+    document.getElementById('popupPlayButton').addEventListener('click', function() {
       var audio = document.getElementById('audioPlayer');
       audio.play();
       console.log("Playing");
