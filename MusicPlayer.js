@@ -81,6 +81,31 @@ function mouseClicked() {
     }
   });
 }
+positions.forEach((position, index) => {
+  const { x, y } = calculatePosition(position);
+  if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
+    if (index === 0) {
+      // Mute button logic
+      if (isMuted) {
+        unmute();
+        console.log('Unmuted');
+      } else {
+        mute();
+        console.log('Muted');
+      }
+    }
+  }
+});
+
+function mute() {
+isMuted = true;
+audioElement.muted = true;
+};
+
+function unmute() {
+isMuted = false;
+audioElement.muted = false;
+}
 
 document.addEventListener('click', function (event) {
   const popupMenu = document.getElementById('popupMenu');
