@@ -89,22 +89,22 @@ positions.forEach((position, index) => {
     if (index === 0) {
       // Mute button logic
       if (isMuted) {
-        unmute();
+        unmuteMusic();
         console.log('Unmuted');
       } else {
-        mute();
+        muteMusic();
         console.log('Muted');
       }
     }
   }
 });
 
-function mute() {
+function muteMusic() {
   isMuted = true;
   audioElement.muted = true;
 };
 
-function unmute() {
+function unmuteMusic() {
   isMuted = false;
   audioElement.muted = false;
 }
