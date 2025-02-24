@@ -18,7 +18,6 @@ function preload() {
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.id('musicPlayerCanvas');
-  mute = false;
 }
 
 function calculatePosition(position) {
