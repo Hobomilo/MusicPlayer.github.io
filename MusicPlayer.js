@@ -1,4 +1,3 @@
-
 let width = 800;
 let height = 600;
 
@@ -56,6 +55,7 @@ function draw() {
   //
   //fourth layer (score cards)
 }
+
 function mouseClicked() {
   const positions = [1 / 5, 2 / 5, 3 / 5, 4 / 5];
   positions.forEach((position, index) => {
@@ -81,7 +81,8 @@ function mouseClicked() {
     }
   });
 }
- positions.forEach((position, index) => {
+
+positions.forEach((position, index) => {
   const { x, y } = calculatePosition(position);
   if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
     if (index === 0) {
@@ -98,13 +99,13 @@ function mouseClicked() {
 });
 
 function mute() {
-isMuted = true;
-audioElement.muted = true;
+  isMuted = true;
+  audioElement.muted = true;
 };
 
 function unmute() {
-isMuted = false;
-audioElement.muted = false;
+  isMuted = false;
+  audioElement.muted = false;
 }
 
 document.addEventListener('click', function (event) {
