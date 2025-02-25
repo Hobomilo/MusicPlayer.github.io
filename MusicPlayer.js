@@ -10,8 +10,7 @@ const overlayRadius = 30;
 
 let play, pause, mute, exit;
 let isMuted = false;
-
-const audioElement = document.getElementById('audioPlayer');
+let audioElement;
 
 function preload() {
   play = loadImage('./Images/play.jpg');
@@ -23,6 +22,7 @@ function preload() {
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.id('musicPlayerCanvas');
+  const audioElement = document.getElementById('audioPlayer');
 }
 
 function calculatePosition(position) {
