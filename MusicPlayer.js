@@ -7,6 +7,7 @@ const overlayWidth = width * 3 / 4 - width / 20;
 const overlayHeight = height * 1 / 2;
 const overlayRadius = 30;
 let play, pause, mute, exit;
+let isMuted = false;
 
 function preload() {
   play = loadImage('./Images/play.jpg');
