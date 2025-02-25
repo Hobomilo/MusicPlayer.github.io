@@ -83,10 +83,9 @@ function mouseClicked() {
   });
 
   positions.forEach((position, index) => {
-    console.log(`Position at index ${index}:`, position);
     const { x, y } = calculatePosition(position);
     if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
-      if (index === 0) {
+      if (index === 2) {
         // Mute button logic
         if (isMuted) {
           unmuteMusic();
