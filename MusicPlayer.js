@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', (event) => {
 let width = 800;
 let height = 600;
 
@@ -87,6 +88,7 @@ function mouseClicked() {
 
   positions.forEach((position, index) => {
     const { x, y } = calculatePosition(position);
+    console.log('mute button clicked');
     if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
       if (index === 2) {
         // Mute button logic
@@ -119,4 +121,5 @@ document.addEventListener('click', function (event) {
   if (!popupMenu.contains(event.target)) {
     popupMenu.style.display = 'none';
   }
+});
 });
