@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', (event) => {
 let width = 800;
 let height = 600;
 
@@ -10,7 +9,6 @@ const overlayRadius = 30;
 
 let play, pause, mute, exit;
 let isMuted = false;
-let audioElement;
 
 function preload() {
   play = loadImage('./Images/play.jpg');
@@ -22,7 +20,6 @@ function preload() {
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.id('musicPlayerCanvas');
-  const audioElement = document.getElementById('audioPlayer');
 }
 
 function calculatePosition(position) {
@@ -121,5 +118,4 @@ document.addEventListener('click', function (event) {
   if (!popupMenu.contains(event.target)) {
     popupMenu.style.display = 'none';
   }
-});
 });
