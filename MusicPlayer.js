@@ -80,23 +80,23 @@ function mouseClicked() {
       }
     }
   });
-}
 
-positions.forEach((position, index) => {
-  const { x, y } = calculatePosition(position);
-  if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
-    if (index === 0) {
-      // Mute button logic
-      if (isMuted) {
-        unmuteMusic();
-        console.log('Unmuted');
-      } else {
-        muteMusic();
-        console.log('Muted');
+  positions.forEach((position, index) => {
+    const { x, y } = calculatePosition(position);
+    if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
+      if (index === 0) {
+        // Mute button logic
+        if (isMuted) {
+          unmuteMusic();
+          console.log('unmuted');
+        } else {
+          muteMusic();
+          console.log('muted');
+        }
       }
     }
-  }
-});
+  });
+}
 
 function muteMusic() {
   isMuted = true;
