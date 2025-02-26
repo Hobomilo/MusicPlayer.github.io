@@ -8,7 +8,7 @@ const overlayHeight = height * 1 / 2;
 const overlayRadius = 30;
 
 let play, pause, mute, exit;
-let isMuted = false;
+let audioElement;
 
 function preload() {
   play = loadImage('./Images/play.jpg');
@@ -20,6 +20,7 @@ function preload() {
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.id('musicPlayerCanvas');
+  audioElement = document.getElementById('audioPlayer');
 }
 
 function calculatePosition(position) {
@@ -32,7 +33,7 @@ function drawButton(img, position) {
   const { x, y } = calculatePosition(position);
   const w = width / 10;
   const h = height / 10;
-  rect(x, y, w, h);
+  image(img, x, y, w, h);
   image(img, x, y, w, h);
 }
 
@@ -89,33 +90,15 @@ function mouseClicked() {
     if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
       if (index === 2) {
         // Mute button logic
-        if (isMuted) {
-          unmuteMusic();
-          console.log('unmuted');
-          isMuted = false;
-        } else {
-          muteMusic();
-          console.log('muted');
-          isMuted = true;
-        }
+        audioElement.muted = !audioElement.muted;
+        console.log('audio muted');
       }
     }
   });
+  document.addEventListener('click', function (event) {
+    const popupMenu = document.getElementById('popupMenu');
+    if (!popupMenu.contains(event.target)) {
+      popupMenu.style.display = 'none';
+    }
+  });
 }
-
-function muteMusic() {
-  isMuted = true;
-  audioElement.muted = true;
-};
-
-function unmuteMusic() {
-  isMuted = false;
-  audioElement.muted = false;
-}
-
-document.addEventListener('click', function (event) {
-  const popupMenu = document.getElementById('popupMenu');
-  if (!popupMenu.contains(event.target)) {
-    popupMenu.style.display = 'none';
-  }
-});
