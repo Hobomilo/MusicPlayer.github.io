@@ -109,7 +109,7 @@ body::before {
 }
 
 h1 {
-	font-size: 3rem;
+	font-size: 3vw;
 	color: black;
 	display: block;
 	text-align: center;
@@ -117,7 +117,7 @@ h1 {
 
 h2,
 h3 {
-	font-size: 1.8rem;
+	font-size: 1.8vw;
 	color: black;
 	display: block;
 	text-align: left;
@@ -127,7 +127,7 @@ h3 {
 }
 
 p {
-	font-size: 1em;
+	font-size: 1vw;
 	color: black;
 	padding: 10px 40px 10px 40px;
 }
@@ -178,7 +178,7 @@ img {
 header {
 	background-color: rgb(50, 86, 140, 0.8);
 	color: black;
-	font-size: 3rem;
+	font-size: 3vw;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 20px;
