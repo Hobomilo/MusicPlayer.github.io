@@ -34,7 +34,6 @@ function drawButton(img, position) {
   const w = width / 10;
   const h = height / 10;
   image(img, x, y, w, h);
-  image(img, x, y, w, h);
 }
 
 function draw() {
@@ -46,7 +45,6 @@ function draw() {
   //
   //second layer (buttons)
   rectMode(CORNER);
-  fill(255, 255, 255);
   drawButton(play, 1 / 5);
   drawButton(pause, 2 / 5);
   drawButton(mute, 3 / 5);
