@@ -86,7 +86,6 @@ function mouseClicked() {
 
   positions.forEach((position, index) => {
     const { x, y } = calculatePosition(position);
-    console.log('mute button clicked');
     if (mouseX > x && mouseX < x + width / 10 && mouseY > y && mouseY < y + height / 10) {
       if (index === 2) {
         // Mute button logic
