@@ -109,7 +109,7 @@ body::before {
 }
 
 h1 {
-	font-size: clamp(40px, 4vw, 60px);
+	font-size: 16vw;
 	color: black;
 	display: block;
 	text-align: center;
@@ -117,7 +117,7 @@ h1 {
 
 h2,
 h3 {
-	font-size: clamp(30px, 3vw, 45x);
+	font-size: 12vw;
 	color: black;
 	display: block;
 	text-align: left;
@@ -127,7 +127,7 @@ h3 {
 }
 
 p {
-	font-size:clamp(20px, 2vw, 30px);
+	font-size: 8vw;
 	color: black;
 	padding: 10px 40px 10px 40px;
 }
@@ -178,7 +178,7 @@ img {
 header {
 	background-color: rgb(50, 86, 140, 0.8);
 	color: black;
-	font-size: clamp(50px, 5vw, 75px);
+	font-size: 12vw;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 20px;
