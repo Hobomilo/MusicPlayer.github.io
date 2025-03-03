@@ -136,6 +136,7 @@ ul {
 	display: block;
 	text-align: left;
 	padding-left: 20%;
+	font-size: 4vw;
 }
 
 .popup-menu {
@@ -164,6 +165,7 @@ ul {
 
 li {
 	list-style-position: inside;
+	font-size: 4vw;
 }
 
 img {
