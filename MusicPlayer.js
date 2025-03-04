@@ -76,8 +76,6 @@ function mouseClicked() {
         popupMenu.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
         //debug
         console.log('popup displayed');
-      } else {
-        console.log('nothing happened');
       }
     }
   });
