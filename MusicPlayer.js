@@ -53,6 +53,17 @@ function draw() {
   //third layer (overlay)
   rectMode(CENTER);
   rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
+  drawOverlayButton('Best of 3', overlayX - overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
+  drawOverlayButton('Best of 5', overlayX + overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
+
+  function drawOverlayButton(label, x, y, w, h) {
+    fill(200);
+    rect(x, y, w, h);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text(label, x + w / 2, y + h / 2);
+  }
+
   //
   //fourth layer (score cards)
 }
@@ -96,4 +107,39 @@ function mouseClicked() {
       popupMenu.style.display = 'none';
     }
   });
+
+  if (mouseX > overlayX - overlayWidth / 4 && mouseX < overlayX - overlayWidth / 4 + overlayWidth / 4 &&
+    mouseY > overlayY && mouseY < overlayY + overlayHeight / 10) {
+    startGame(3); // Start best of 3 game
+  } else if (mouseX > overlayX + overlayWidth / 4 && mouseX < overlayX + overlayWidth / 4 + overlayWidth / 4 &&
+    mouseY > overlayY && mouseY < overlayY + overlayHeight / 10) {
+    startGame(5); // Start best of 5 game
+  }
 }
+
+function startGame(rounds) {
+  console.log(`Starting a game of best of ${rounds}`);
+  drawGameGeometry();
+
+  let countdown = 3;
+  const countdownInterval = setInterval(() => {
+    console.log(countdown);
+    countdown--;
+    if (countdown < 0) {
+      clearInterval(countdownInterval);
+      initializeGame(rounds);
+    }
+  }, 1000);
+}
+
+function drawGameGeometry() {
+      clear();
+      rectMode(CENTER);
+      fill(255);
+      rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
+    }
+
+function initializeGame(rounds) {
+      console.log(`Game started with best of ${rounds} rounds`);
+      // Game logic goes here
+    }
