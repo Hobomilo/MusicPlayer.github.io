@@ -209,3 +209,31 @@ function initializeGame(rounds) {
       }
       gameLoop();
     }
+
+    function keyPressed() {
+      //left paddle
+      if (key === 'w' || key === 'W') {
+        leftPaddle.speedY = -paddleSpeed;
+      } else if (key === 's' || key === 'S') {
+        leftPaddle.speedY = paddleSpeed;
+      }
+    
+      //right paddle
+      if (keyCode === UP_ARROW) {
+        rightPaddle.speedY = -paddleSpeed;
+      } else if (keyCode === DOWN_ARROW) {
+        rightPaddle.speedY = paddleSpeed;
+      }
+    }
+    
+    function keyReleased() {
+      //stop left
+      if (key === 'w' || key === 'W' || key === 's' || key === 'S') {
+        leftPaddle.speedY = 0;
+      }
+    
+      //stop right
+      if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
+        rightPaddle.speedY = 0;
+      }
+    }
