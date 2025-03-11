@@ -10,6 +10,19 @@ const overlayRadius = 30;
 let play, pause, mute, exit;
 let audioElement;
 
+let paddleWidth = 10;
+let paddleHeight = 100;
+let leftPaddle = {
+  x: overlayX - overlayWidth / 2 + paddleWidth / 2,
+  y: overlayY,
+  speedY: 0
+};
+let rightPaddle = {
+  x: overlayX + overlayWidth / 2 - paddleWidth / 2,
+  y: overlayY,
+  speedY: 0
+};
+
 function preload() {
   play = loadImage('./Images/play.jpg');
   pause = loadImage('./Images/pause.jpg');
@@ -137,9 +150,62 @@ function drawGameGeometry() {
       rectMode(CENTER);
       fill(255);
       rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
-    }
 
+      ellipse(ball.x, ball.y, ball.radius * 2, ball.radius * 2);
+
+      rect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
+      rect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+    }
+    function updateBall() {
+      ball.x += ball.speedX;
+      ball.y += ball.speedY;
+      //collison with walls
+      if (ball.y - ball.radius < overlayY - overlayHeight / 2 || ball.y + ball.radius > overlayY + overlayHeight / 2) {
+        ball.speedY *= -1;
+      }
+      //collison with paddles
+      if (ball.x - ball.radius < leftPaddle.x + paddleWidth / 2 && ball.y > leftPaddle.y - paddleHeight / 2 && ball.y < leftPaddle.y + paddleHeight / 2) {
+        ball.speedX *= -1;
+      }
+      if (ball.x + ball.radius > rightPaddle.x - paddleWidth / 2 && ball.y > rightPaddle.y - paddleHeight / 2 && ball.y < rightPaddle.y + paddleHeight / 2) {
+        ball.speedX *= -1;
+      }
+      //out of bounds
+  if (ball.x - ball.radius < overlayX - overlayWidth / 2 || ball.x + ball.radius > overlayX + overlayWidth / 2) {
+    //reset ball
+    ball.x = overlayX;
+    ball.y = overlayY;
+    ball.speedX *= -1;
+  }
+
+  function updatePaddles() {
+    //paddle positions
+    leftPaddle.y += leftPaddle.speedY;
+    rightPaddle.y += rightPaddle.speedY;
+  
+    //collision with top and bottom
+    if (leftPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
+      leftPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
+    }
+    if (leftPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
+      leftPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+    }
+    if (rightPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
+      rightPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
+    }
+    if (rightPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
+      rightPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+    }
+  }
+}
 function initializeGame(rounds) {
       console.log(`Game started with best of ${rounds} rounds`);
       // Game logic goes here
+      function gameLoop() {
+        updateBall();
+        updatePaddles();
+        drawGameGeometry();
+        requestAnimationFrame(gameLoop);
+      }
+      gameLoop();
     }
