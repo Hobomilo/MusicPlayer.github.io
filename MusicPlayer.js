@@ -200,7 +200,7 @@ function drawGameGeometry() {
 }
 function initializeGame(rounds) {
       console.log(`Game started with best of ${rounds} rounds`);
-      // Game logic goes here
+      //game logic
       function gameLoop() {
         updateBall();
         updatePaddles();
