@@ -9,9 +9,11 @@ const overlayRadius = 30;
 
 let play, pause, mute, exit;
 let audioElement;
+let paddleSpeed = 5;
 
 let paddleWidth = 10;
 let paddleHeight = 100;
+
 let leftPaddle = {
   x: overlayX - overlayWidth / 2 + paddleWidth / 2,
   y: overlayY,
@@ -23,7 +25,17 @@ let rightPaddle = {
   speedY: 0
 };
 
+let countdown;
 let showButtons = true;
+let gameRunning = false;
+
+let ball = {
+  x: overlayX,
+  y: overlayY,
+  radius: 10,
+  speedX: 3,
+  speedY: 3
+};
 
 function preload() {
   play = loadImage('./Images/play.jpg');
@@ -46,15 +58,15 @@ function setup() {
 }
 
 function calculatePosition(position) {
-  const x = width * position - width / 20;
-  const y = height * 3 / 4 - height / 20;
+  const x = (width * position) - (width / 20);
+  const y = (height * 3 / 4) - (height / 20);
   return { x, y };
 }
 
 function drawButton(img, position) {
   const { x, y } = calculatePosition(position);
-  const w = width / 10;
-  const h = height / 10;
+  const w = width * 1 / 10;
+  const h = height * 1 / 10;
   image(img, x, y, w, h);
 }
 
@@ -124,24 +136,24 @@ function mouseClicked() {
 
   if (mouseX > overlayX - overlayWidth / 4 && mouseX < overlayX - overlayWidth / 4 + overlayWidth / 4 &&
     mouseY > overlayY && mouseY < overlayY + overlayHeight / 10) {
-    startGame(3); // Start best of 3 game
+    startGame(3); //start best of 3 game
   } else if (mouseX > overlayX + overlayWidth / 4 && mouseX < overlayX + overlayWidth / 4 + overlayWidth / 4 &&
     mouseY > overlayY && mouseY < overlayY + overlayHeight / 10) {
-    startGame(5); // Start best of 5 game
+    startGame(5); //start best of 5 game
   }
 }
 
 function startGame(rounds) {
   console.log(`Starting a game of best of ${rounds}`);
   showButtons = false;
-  drawGameGeometry();
 
-  let countdown = 3;
+  countdown = 3;
   const countdownInterval = setInterval(() => {
     console.log(countdown);
-    countdown--;
+    // Removed console.log to avoid performance issues
     if (countdown < 0) {
       clearInterval(countdownInterval);
+      drawGameGeometry();
       initializeGame(rounds);
     }
   }, 1000);
@@ -165,13 +177,18 @@ function drawGameGeometry() {
   }
 }
 function updateBall() {
+  if (!gameRunning) return;
   ball.x += ball.speedX;
   ball.y += ball.speedY;
-  //collison with walls
+  //collision with overlay walls
   if (ball.y - ball.radius < overlayY - overlayHeight / 2 || ball.y + ball.radius > overlayY + overlayHeight / 2) {
     ball.speedY *= -1;
   }
-  //collison with paddles
+  //collision with canvas top and bottom
+  if (ball.y - ball.radius < 0 || ball.y + ball.radius > height) {
+    ball.speedY *= -1;
+  }
+  //collision with paddles
   if (ball.x - ball.radius < leftPaddle.x + paddleWidth / 2 && ball.y > leftPaddle.y - paddleHeight / 2 && ball.y < leftPaddle.y + paddleHeight / 2) {
     ball.speedX *= -1;
   }
@@ -185,14 +202,14 @@ function updateBall() {
     ball.y = overlayY;
     ball.speedX *= -1;
   }
+}
 
-  function drawGameText() {
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    if (countdown > 0) {
-      text(`Game Starts In: ${countdown}`, overlayX, overlayY - overlayHeight / 4);
-    }
+function drawGameText() {
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  if (countdown > 0) {
+    text(`Game Starts In: ${countdown}`, overlayX, overlayY - overlayHeight / 4);
   }
 }
 
@@ -213,45 +230,74 @@ function updatePaddles() {
   }
   if (rightPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
     rightPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+    gameRunning = true;
+    gameLoop();
   }
-}
+  function initializeGame(rounds) {
+    console.log(`Game started with best of ${rounds} rounds`);
+    gameRunning = true;
+    gameLoop();
+  }
 
-function initializeGame(rounds) {
-  console.log(`Game started with best of ${rounds} rounds`);
-  //game logic
   function gameLoop() {
+    if (gameRunning) {
+      requestAnimationFrame(gameLoop);
+    }
     updateBall();
     updatePaddles();
     drawGameGeometry();
-    requestAnimationFrame(gameLoop);
   }
-  gameLoop();
+
+  function endGame() {
+    gameRunning = false;
+    console.log('Game Over');
+  }
 }
+updateBall();
+updatePaddles();
+
 
 function keyPressed() {
-  //left paddle
-  if (key === 'w' || key === 'W') {
-    leftPaddle.speedY = -paddleSpeed;
-  } else if (key === 's' || key === 'S') {
-    leftPaddle.speedY = paddleSpeed;
+  switch (key) {
+    case 'w':
+    case 'W':
+      leftPaddle.speedY = -paddleSpeed;
+      break;
+    case 's':
+    case 'S':
+      leftPaddle.speedY = paddleSpeed;
+      break;
   }
 
-  //right paddle
-  if (keyCode === UP_ARROW) {
-    rightPaddle.speedY = -paddleSpeed;
-  } else if (keyCode === DOWN_ARROW) {
-    rightPaddle.speedY = paddleSpeed;
+  switch (keyCode) {
+    case UP_ARROW:
+      rightPaddle.speedY = -paddleSpeed;
+      break;
+    case DOWN_ARROW:
+      rightPaddle.speedY = paddleSpeed;
+      break;
   }
 }
 
 function keyReleased() {
-  //stop left
-  if (key === 'w' || key === 'W' || key === 's' || key === 'S') {
-    leftPaddle.speedY = 0;
+  switch (key) {
+    case 'w':
+    case 'W':
+    case 's':
+    case 'S':
+      leftPaddle.speedY = 0;
+      break;
   }
 
-  //stop right
-  if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
-    rightPaddle.speedY = 0;
+  switch (keyCode) {
+    case UP_ARROW:
+    case DOWN_ARROW:
+      rightPaddle.speedY = 0;
+      break;
   }
+}
+
+//stop right
+if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
+  rightPaddle.speedY = 0;
 }
