@@ -23,6 +23,8 @@ let rightPaddle = {
   speedY: 0
 };
 
+let showButtons = true;
+
 function preload() {
   play = loadImage('./Images/play.jpg');
   pause = loadImage('./Images/pause.jpg');
@@ -34,6 +36,13 @@ function setup() {
   let canvas = createCanvas(800, 600);
   canvas.id('musicPlayerCanvas');
   audioElement = document.getElementById('audioPlayer');
+
+  document.addEventListener('click', function (event) {
+    const popupMenu = document.getElementById('popupMenu');
+    if (!popupMenu.contains(event.target)) {
+      popupMenu.style.display = 'none';
+    }
+  });
 }
 
 function calculatePosition(position) {
@@ -66,8 +75,6 @@ function draw() {
   //third layer (overlay)
   rectMode(CENTER);
   rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
-  drawOverlayButton('Best of 3', overlayX - overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
-  drawOverlayButton('Best of 5', overlayX + overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
 
   function drawOverlayButton(label, x, y, w, h) {
     fill(200);
@@ -114,12 +121,6 @@ function mouseClicked() {
       }
     }
   });
-  document.addEventListener('click', function (event) {
-    const popupMenu = document.getElementById('popupMenu');
-    if (!popupMenu.contains(event.target)) {
-      popupMenu.style.display = 'none';
-    }
-  });
 
   if (mouseX > overlayX - overlayWidth / 4 && mouseX < overlayX - overlayWidth / 4 + overlayWidth / 4 &&
     mouseY > overlayY && mouseY < overlayY + overlayHeight / 10) {
@@ -132,6 +133,7 @@ function mouseClicked() {
 
 function startGame(rounds) {
   console.log(`Starting a game of best of ${rounds}`);
+  showButtons = false;
   drawGameGeometry();
 
   let countdown = 3;
@@ -146,31 +148,37 @@ function startGame(rounds) {
 }
 
 function drawGameGeometry() {
-      clear();
-      rectMode(CENTER);
-      fill(255);
-      rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
+  clear();
+  rectMode(CENTER);
+  fill(255);
+  rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
 
-      ellipse(ball.x, ball.y, ball.radius * 2, ball.radius * 2);
+  ellipse(ball.x, ball.y, ball.radius * 2, ball.radius * 2);
 
-      rect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
-      rect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
-    }
-    function updateBall() {
-      ball.x += ball.speedX;
-      ball.y += ball.speedY;
-      //collison with walls
-      if (ball.y - ball.radius < overlayY - overlayHeight / 2 || ball.y + ball.radius > overlayY + overlayHeight / 2) {
-        ball.speedY *= -1;
-      }
-      //collison with paddles
-      if (ball.x - ball.radius < leftPaddle.x + paddleWidth / 2 && ball.y > leftPaddle.y - paddleHeight / 2 && ball.y < leftPaddle.y + paddleHeight / 2) {
-        ball.speedX *= -1;
-      }
-      if (ball.x + ball.radius > rightPaddle.x - paddleWidth / 2 && ball.y > rightPaddle.y - paddleHeight / 2 && ball.y < rightPaddle.y + paddleHeight / 2) {
-        ball.speedX *= -1;
-      }
-      //out of bounds
+  rect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
+  rect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+
+  drawGameText();
+  if (showButtons) {
+    drawOverlayButton('Best of 3', overlayX - overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
+    drawOverlayButton('Best of 5', overlayX + overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
+  }
+}
+function updateBall() {
+  ball.x += ball.speedX;
+  ball.y += ball.speedY;
+  //collison with walls
+  if (ball.y - ball.radius < overlayY - overlayHeight / 2 || ball.y + ball.radius > overlayY + overlayHeight / 2) {
+    ball.speedY *= -1;
+  }
+  //collison with paddles
+  if (ball.x - ball.radius < leftPaddle.x + paddleWidth / 2 && ball.y > leftPaddle.y - paddleHeight / 2 && ball.y < leftPaddle.y + paddleHeight / 2) {
+    ball.speedX *= -1;
+  }
+  if (ball.x + ball.radius > rightPaddle.x - paddleWidth / 2 && ball.y > rightPaddle.y - paddleHeight / 2 && ball.y < rightPaddle.y + paddleHeight / 2) {
+    ball.speedX *= -1;
+  }
+  //out of bounds
   if (ball.x - ball.radius < overlayX - overlayWidth / 2 || ball.x + ball.radius > overlayX + overlayWidth / 2) {
     //reset ball
     ball.x = overlayX;
@@ -178,62 +186,72 @@ function drawGameGeometry() {
     ball.speedX *= -1;
   }
 
-  function updatePaddles() {
-    //paddle positions
-    leftPaddle.y += leftPaddle.speedY;
-    rightPaddle.y += rightPaddle.speedY;
-  
-    //collision with top and bottom
-    if (leftPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
-      leftPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
-    }
-    if (leftPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
-      leftPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
-    }
-    if (rightPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
-      rightPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
-    }
-    if (rightPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
-      rightPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+  function drawGameText() {
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    if (countdown > 0) {
+      text(`Game Starts In: ${countdown}`, overlayX, overlayY - overlayHeight / 4);
     }
   }
 }
-function initializeGame(rounds) {
-      console.log(`Game started with best of ${rounds} rounds`);
-      //game logic
-      function gameLoop() {
-        updateBall();
-        updatePaddles();
-        drawGameGeometry();
-        requestAnimationFrame(gameLoop);
-      }
-      gameLoop();
-    }
 
-    function keyPressed() {
-      //left paddle
-      if (key === 'w' || key === 'W') {
-        leftPaddle.speedY = -paddleSpeed;
-      } else if (key === 's' || key === 'S') {
-        leftPaddle.speedY = paddleSpeed;
-      }
-    
-      //right paddle
-      if (keyCode === UP_ARROW) {
-        rightPaddle.speedY = -paddleSpeed;
-      } else if (keyCode === DOWN_ARROW) {
-        rightPaddle.speedY = paddleSpeed;
-      }
-    }
-    
-    function keyReleased() {
-      //stop left
-      if (key === 'w' || key === 'W' || key === 's' || key === 'S') {
-        leftPaddle.speedY = 0;
-      }
-    
-      //stop right
-      if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
-        rightPaddle.speedY = 0;
-      }
-    }
+function updatePaddles() {
+  //paddle positions
+  leftPaddle.y += leftPaddle.speedY;
+  rightPaddle.y += rightPaddle.speedY;
+
+  //collision with top and bottom
+  if (leftPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
+    leftPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
+  }
+  if (leftPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
+    leftPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+  }
+  if (rightPaddle.y - paddleHeight / 2 < overlayY - overlayHeight / 2) {
+    rightPaddle.y = overlayY - overlayHeight / 2 + paddleHeight / 2;
+  }
+  if (rightPaddle.y + paddleHeight / 2 > overlayY + overlayHeight / 2) {
+    rightPaddle.y = overlayY + overlayHeight / 2 - paddleHeight / 2;
+  }
+}
+
+function initializeGame(rounds) {
+  console.log(`Game started with best of ${rounds} rounds`);
+  //game logic
+  function gameLoop() {
+    updateBall();
+    updatePaddles();
+    drawGameGeometry();
+    requestAnimationFrame(gameLoop);
+  }
+  gameLoop();
+}
+
+function keyPressed() {
+  //left paddle
+  if (key === 'w' || key === 'W') {
+    leftPaddle.speedY = -paddleSpeed;
+  } else if (key === 's' || key === 'S') {
+    leftPaddle.speedY = paddleSpeed;
+  }
+
+  //right paddle
+  if (keyCode === UP_ARROW) {
+    rightPaddle.speedY = -paddleSpeed;
+  } else if (keyCode === DOWN_ARROW) {
+    rightPaddle.speedY = paddleSpeed;
+  }
+}
+
+function keyReleased() {
+  //stop left
+  if (key === 'w' || key === 'W' || key === 's' || key === 'S') {
+    leftPaddle.speedY = 0;
+  }
+
+  //stop right
+  if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
+    rightPaddle.speedY = 0;
+  }
+}
