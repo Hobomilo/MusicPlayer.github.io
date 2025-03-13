@@ -170,7 +170,7 @@ function drawGameGeometry() {
 
   drawGameText();
 
-  if (showButtons === true) {
+  if (showButtons == true)  {
     drawOverlayButton('Best of 3', overlayX - overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
     drawOverlayButton('Best of 5', overlayX + overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
   }
