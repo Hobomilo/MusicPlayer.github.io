@@ -149,8 +149,6 @@ function startGame(rounds) {
 
   countdown = 3;
   const countdownInterval = setInterval(() => {
-    console.log(countdown);
-    // Removed console.log to avoid performance issues
     if (countdown < 0) {
       clearInterval(countdownInterval);
       drawGameGeometry();
@@ -171,7 +169,8 @@ function drawGameGeometry() {
   rect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
 
   drawGameText();
-  if (showButtons) {
+
+  if (showButtons === true) {
     drawOverlayButton('Best of 3', overlayX - overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
     drawOverlayButton('Best of 5', overlayX + overlayWidth / 4, overlayY, overlayWidth / 4, overlayHeight / 10);
   }
