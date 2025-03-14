@@ -88,16 +88,18 @@ function draw() {
   rectMode(CENTER);
   rect(overlayX, overlayY, overlayWidth, overlayHeight, overlayRadius);
 
-  function drawOverlayButton(label, x, y, w, h) {
-    fill(200);
-    rect(x, y, w, h);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    text(label, x + w / 2, y + h / 2);
-  }
-
+  drawOverlayButton();
   //
   //fourth layer (score cards)
+}
+
+
+function drawOverlayButton(label, x, y, w, h) {
+  fill(200);
+  rect(x, y, w, h);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  text(label, x + w / 2, y + h / 2);
 }
 
 function mouseClicked() {
