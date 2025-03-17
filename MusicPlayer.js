@@ -298,7 +298,3 @@ function keyReleased() {
   }
 }
 
-//stop right
-if (keyCode === UP_ARROW || keyCode === DOWN_ARROW) {
-  rightPaddle.speedY = 0;
-}
