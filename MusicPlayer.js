@@ -191,10 +191,10 @@ function updateBall() {
   }
   //collision with paddles
   if (ball.x - ball.radius < leftPaddle.x + paddleWidth / 2 && ball.y > leftPaddle.y - paddleHeight / 2 && ball.y < leftPaddle.y + paddleHeight / 2) {
-    ball.speedX *= -1;
+    ball.speedX *= 0;
   }
   if (ball.x + ball.radius > rightPaddle.x - paddleWidth / 2 && ball.y > rightPaddle.y - paddleHeight / 2 && ball.y < rightPaddle.y + paddleHeight / 2) {
-    ball.speedX *= -1;
+    ball.speedX *= 0;
   }
   //out of bounds
   if (ball.x - ball.radius < overlayX - overlayWidth / 2 || ball.x + ball.radius > overlayX + overlayWidth / 2) {
