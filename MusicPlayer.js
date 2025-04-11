@@ -7,6 +7,11 @@ const overlayWidth = width * 3 / 4 - width / 20;
 const overlayHeight = height * 1 / 2;
 const overlayRadius = 30;
 
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = overlayWidth;
+canvas.height = overlayHeight;
+
 let play, pause, mute, exit;
 let audioElement;
 let paddleSpeed = 5;
@@ -27,6 +32,7 @@ let rightPaddle = {
 
 let countdown;
 let showButtons = true;
+console.log('showButtons:', showButtons);
 let gameRunning = false;
 
 let ball = {
@@ -213,6 +219,14 @@ function drawGameText() {
     text(`Game Starts In: ${countdown}`, overlayX, overlayY - overlayHeight / 4);
   }
 }
+
+function drawPaddle(ctx, x, y, width, height, color) {
+ctx.fillStyle = color;
+ctx.fillRect(x, y, width, height);
+}
+
+drawPaddle(ctx, leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight, 'blue');
+drawPaddle(ctx, rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight, 'red');
 
 function updatePaddles() {
   //paddle positions
